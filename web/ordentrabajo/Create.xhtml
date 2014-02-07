@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdentrabajoCreateDlg" widgetVar="OrdentrabajoCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateOrdentrabajoTitle}" closeOnEscape="true">
+
+            <h:form id="OrdentrabajoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idOrden}" for="idOrden" />
+                        <p:inputText id="idOrden" value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.CreateOrdentrabajoTitle_idOrden}" required="true" requiredMessage="#{myBundle.CreateOrdentrabajoRequiredMessage_idOrden}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_fechaOrden}" for="fechaOrden" />
+                        <p:calendar id="fechaOrden" pattern="MM/dd/yyyy" value="#{ordentrabajoController.selected.fechaOrden}" title="#{myBundle.EditOrdentrabajoTitle_fechaOrden}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_fechaOrden}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_entregado}" for="entregado" />
+                        <p:inputText id="entregado" value="#{ordentrabajoController.selected.entregado}" title="#{myBundle.CreateOrdentrabajoTitle_entregado}" required="true" requiredMessage="#{myBundle.CreateOrdentrabajoRequiredMessage_entregado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{ordentrabajoController.selected.observaciones}" title="#{myBundle.CreateOrdentrabajoTitle_observaciones}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idEntidad}" for="idEntidad" />
+                        <p:selectOneMenu id="idEntidad" value="#{ordentrabajoController.selected.idEntidad}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_idEntidad}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{entidadesController.items}"
+                                           var="idEntidadItem"
+                                           itemValue="#{idEntidadItem}"
+                                           itemLabel="#{idEntidadItem.idEntidad.toString()}"
+                                           />
+                            <f:converter binding="#{entidadesConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordentrabajoController.saveNew}" value="#{myBundle.Save}" update="display,:OrdentrabajoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,OrdentrabajoCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="OrdentrabajoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

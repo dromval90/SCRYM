@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="InvSubfamiliasListForm">
+
+        <p:panel header="#{myBundle.ListInvSubfamiliasTitle}">
+
+            <p:dataTable id="datalist" value="#{invSubfamiliasController.items}" var="item"
+                         selectionMode="single" selection="#{invSubfamiliasController.selected}"
+                         rowKey="#{item.idSubFamilia}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idSubFamilia}" filterBy="#{item.idSubFamilia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInvSubfamiliasTitle_idSubFamilia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idSubFamilia}"/>
+                </p:column>
+                <p:column sortBy="#{item.nombreSubFamilia}" filterBy="#{item.nombreSubFamilia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInvSubfamiliasTitle_nombreSubFamilia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreSubFamilia}"/>
+                </p:column>
+                <p:column sortBy="#{item.idFamilia.idFamilia}" filterBy="#{item.idFamilia.idFamilia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInvSubfamiliasTitle_idFamilia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idFamilia.nombreFamilia}"/>
+                </p:column>
+                <p:column sortBy="#{item.comentario}" filterBy="#{item.comentario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInvSubfamiliasTitle_comentario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.comentario}"/>
+                </p:column>
+                
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{invSubfamiliasController.prepareCreate}" update=":InvSubfamiliasCreateForm" oncomplete="InvSubfamiliasCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":InvSubfamiliasViewForm" oncomplete="InvSubfamiliasViewDialog.show()" disabled="#{empty invSubfamiliasController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":InvSubfamiliasEditForm" oncomplete="InvSubfamiliasEditDialog.show()" disabled="#{empty invSubfamiliasController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{invSubfamiliasController.delete}" update=":growl,datalist" disabled="#{empty invSubfamiliasController.selected}"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

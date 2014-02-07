@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DetordentrabajoListForm">
+
+        <p:panel header="#{myBundle.ListDetordentrabajoTitle}">
+
+            <p:dataTable id="datalist" value="#{detordentrabajoController.items}" var="item"
+                         selectionMode="single" selection="#{detordentrabajoController.selected}"
+                         rowKey="#{item.idDetOrden}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idDetOrden}" filterBy="#{item.idDetOrden}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idDetOrden}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDetOrden}"/>
+                </p:column>
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_cantidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.precio}" filterBy="#{item.precio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_precio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.precio}"/>
+                </p:column>
+                <p:column sortBy="#{item.iva}" filterBy="#{item.iva}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_iva}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.iva}"/>
+                </p:column>
+                <p:column sortBy="#{item.descuento}" filterBy="#{item.descuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_descuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descuento}"/>
+                </p:column>
+                <p:column sortBy="#{item.idProducto.descripcion}" filterBy="#{item.idProducto.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idProducto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProducto.descripcion}"/>
+                </p:column>
+                <p:column sortBy="#{item.idOrden.idOrden}" filterBy="#{item.idOrden.idOrden}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idOrden}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idOrden.idOrden}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{detordentrabajoController.prepareCreate}" update=":DetordentrabajoCreateForm" oncomplete="DetordentrabajoCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DetordentrabajoViewForm" oncomplete="DetordentrabajoViewDialog.show()" disabled="#{empty detordentrabajoController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DetordentrabajoEditForm" oncomplete="DetordentrabajoEditDialog.show()" disabled="#{empty detordentrabajoController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{detordentrabajoController.delete}" update=":growl,datalist" disabled="#{empty detordentrabajoController.selected}"/>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

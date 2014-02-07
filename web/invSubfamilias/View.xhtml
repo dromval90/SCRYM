@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvSubfamiliasViewDlg" widgetVar="InvSubfamiliasViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewInvSubfamiliasTitle}" closeOnEscape="true">
+
+            <h:form id="InvSubfamiliasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{invSubfamiliasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewInvSubfamiliasLabel_idSubFamilia}"/>
+                        <h:outputText value="#{invSubfamiliasController.selected.idSubFamilia}" title="#{myBundle.ViewInvSubfamiliasTitle_idSubFamilia}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvSubfamiliasLabel_nombreSubFamilia}"/>
+                        <h:outputText value="#{invSubfamiliasController.selected.nombreSubFamilia}" title="#{myBundle.ViewInvSubfamiliasTitle_nombreSubFamilia}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvSubfamiliasLabel_comentario}"/>
+                        <h:outputText value="#{invSubfamiliasController.selected.comentario}" title="#{myBundle.ViewInvSubfamiliasTitle_comentario}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvSubfamiliasLabel_idFamilia}"/>
+                        <h:outputText value="#{invSubfamiliasController.selected.idFamilia.idFamilia}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="InvSubfamiliasViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

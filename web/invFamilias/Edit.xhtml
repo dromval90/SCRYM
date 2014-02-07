@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvFamiliasEditDlg" widgetVar="InvFamiliasEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditInvFamiliasTitle}" closeOnEscape="true">
+
+            <h:form id="InvFamiliasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{invFamiliasController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditInvFamiliasLabel_idFamilia}" for="idFamilia" />
+                        <h:outputText id="idFamilia" value="#{invFamiliasController.selected.idFamilia}" />
+
+                        <p:outputLabel value="#{myBundle.EditInvFamiliasLabel_nombreFamilia}" for="nombreFamilia" />
+                        <p:inputText id="nombreFamilia" value="#{invFamiliasController.selected.nombreFamilia}" title="#{myBundle.EditInvFamiliasTitle_nombreFamilia}" size="50" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditInvFamiliasLabel_comentario}" for="comentario" />
+                        <p:inputText id="comentario" value="#{invFamiliasController.selected.comentario}" title="#{myBundle.EditInvFamiliasTitle_comentario}" size="50" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{invFamiliasController.save}" value="#{myBundle.Save}" update="display,:InvFamiliasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InvFamiliasEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="InvFamiliasEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

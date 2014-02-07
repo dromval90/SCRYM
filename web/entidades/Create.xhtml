@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EntidadesCreateDlg" widgetVar="EntidadesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateEntidadesTitle}" closeOnEscape="true">
+
+            <h:form id="EntidadesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreateEntidadesLabel_nombreEntidad}" for="nombreEntidad" />
+                        <p:inputText id="nombreEntidad" value="#{entidadesController.selected.nombreEntidad}" title="#{myBundle.CreateEntidadesTitle_nombreEntidad}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEntidadesLabel_numNit}" for="numNit" />
+                        <p:inputText id="numNit" value="#{entidadesController.selected.numNit}" title="#{myBundle.CreateEntidadesTitle_numNit}" size="16" maxlength="16"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEntidadesLabel_numNrc}" for="numNrc" />
+                        <p:inputText id="numNrc" value="#{entidadesController.selected.numNrc}" title="#{myBundle.CreateEntidadesTitle_numNrc}" size="16" maxlength="16"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEntidadesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{entidadesController.selected.direccion}" title="#{myBundle.CreateEntidadesTitle_direccion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEntidadesLabel_idMunicipio}" for="idMunicipio" />
+                        <p:selectOneMenu id="idMunicipio" value="#{entidadesController.selected.idMunicipio}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipiosController.items}"
+                                           var="idMunicipioItem"
+                                           itemValue="#{idMunicipioItem}"
+                                           itemLabel="#{idMunicipioItem.idMunicipio.toString()}"
+                                           />
+                            <f:converter binding="#{municipiosConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{entidadesController.saveNew}" value="#{myBundle.Save}" update="display,:EntidadesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EntidadesCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="EntidadesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
