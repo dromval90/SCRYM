@@ -14,12 +14,20 @@
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2">
-
-                        <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_idDetOrden}" for="idDetOrden" />
-                        <p:inputText id="idDetOrden" value="#{detordentrabajoController.selected.idDetOrden}" title="#{myBundle.CreateDetordentrabajoTitle_idDetOrden}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_idDetOrden}"/>
+                        
+                        <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{detordentrabajoController.selected.idProducto}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idProducto}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invProductosController.items}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"
+                                           itemLabel="#{idProductoItem.nombreProducto}"
+                                           />
+                            <f:converter binding="#{invProductosConverter}"/>
+                        </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{detordentrabajoController.selected.descripcion}" title="#{myBundle.CreateDetordentrabajoTitle_descripcion}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_descripcion}" size="255" maxlength="255"/>
+                        <p:inputText id="descripcion" value="#{detordentrabajoController.selected.descripcion}" title="#{myBundle.CreateDetordentrabajoTitle_descripcion}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_descripcion}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{detordentrabajoController.selected.cantidad}" title="#{myBundle.CreateDetordentrabajoTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_cantidad}"/>
@@ -27,35 +35,14 @@
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_precio}" for="precio" />
                         <p:inputText id="precio" value="#{detordentrabajoController.selected.precio}" title="#{myBundle.CreateDetordentrabajoTitle_precio}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_precio}"/>
 
+                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_descuento}" for="descuento" />
+                        <p:inputText id="descuento" value="#{detordentrabajoController.selected.descuento}" title="#{myBundle.CreateDetordentrabajoTitle_descuento}"/>
+                        
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_iva}" for="iva" />
                         <p:inputText id="iva" value="#{detordentrabajoController.selected.iva}" title="#{myBundle.CreateDetordentrabajoTitle_iva}"/>
 
-                        <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_descuento}" for="descuento" />
-                        <p:inputText id="descuento" value="#{detordentrabajoController.selected.descuento}" title="#{myBundle.CreateDetordentrabajoTitle_descuento}"/>
-
-                        <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_idProducto}" for="idProducto" />
-                        <p:selectOneMenu id="idProducto" value="#{detordentrabajoController.selected.idProducto}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idProducto}">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{invProductosController.items}"
-                                           var="idProductoItem"
-                                           itemValue="#{idProductoItem}"
-                                           itemLabel="#{idProductoItem.descripcion.toString()}"
-                                           />
-                            <f:converter binding="#{invProductosConverter}"/>
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_idOrden}" for="idOrden" />
-                        <p:selectOneMenu id="idOrden" value="#{detordentrabajoController.selected.idOrden}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idOrden}">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{ordentrabajoController.items}"
-                                           var="idOrdenItem"
-                                           itemValue="#{idOrdenItem}"
-                                           itemLabel="#{idOrdenItem.idOrden.toString()}"
-                                           />
-                            <f:converter binding="#{ordentrabajoConverter}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{detordentrabajoController.saveNew}" value="#{myBundle.Save}" update="display,:DetordentrabajoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoCreateDialog);"/>
+                    <p:commandButton actionListener="#{detordentrabajoController.saveNew}" value="#{myBundle.Save}" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="DetordentrabajoCreateDialog.hide()"/>
                 </h:panelGroup>
 

@@ -19,7 +19,7 @@
                         <h:outputText id="idMunicipio" value="#{municipiosController.selected.idMunicipio}" />
 
                         <p:outputLabel value="#{myBundle.EditMunicipiosLabel_nombreMunicipio}" for="nombreMunicipio" />
-                        <p:inputText id="nombreMunicipio" value="#{municipiosController.selected.nombreMunicipio}" title="#{myBundle.EditMunicipiosTitle_nombreMunicipio}" size="100" maxlength="100"/>
+                        <p:inputText id="nombreMunicipio" value="#{municipiosController.selected.nombreMunicipio}" title="#{myBundle.EditMunicipiosTitle_nombreMunicipio}" size="50" maxlength="100"/>
 
                         <p:outputLabel value="#{myBundle.EditMunicipiosLabel_idDepartamento}" for="idDepartamento" />
                         <p:selectOneMenu id="idDepartamento" value="#{municipiosController.selected.idDepartamento}" required="true" requiredMessage="#{myBundle.EditMunicipiosRequiredMessage_idDepartamento}">
@@ -27,7 +27,7 @@
                             <f:selectItems value="#{departamentosController.items}"
                                            var="idDepartamentoItem"
                                            itemValue="#{idDepartamentoItem}"
-                                           itemLabel="#{idDepartamentoItem.idDepartamento.toString()}"
+                                           itemLabel="#{idDepartamentoItem.nombreDepartamento}"
                                            />
                             <f:converter binding="#{departamentosConverter}"/>
                         </p:selectOneMenu>

@@ -19,10 +19,10 @@
                         <h:outputText id="idProducto" value="#{invProductosController.selected.idProducto}" />
 
                         <p:outputLabel value="#{myBundle.EditInvProductosLabel_nombreProducto}" for="nombreProducto" />
-                        <p:inputText id="nombreProducto" value="#{invProductosController.selected.nombreProducto}" title="#{myBundle.EditInvProductosTitle_nombreProducto}" size="255" maxlength="255"/>
+                        <p:inputText id="nombreProducto" value="#{invProductosController.selected.nombreProducto}" title="#{myBundle.EditInvProductosTitle_nombreProducto}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.EditInvProductosLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{invProductosController.selected.descripcion}" title="#{myBundle.EditInvProductosTitle_descripcion}" size="255" maxlength="255"/>
+                        <p:inputText id="descripcion" value="#{invProductosController.selected.descripcion}" title="#{myBundle.EditInvProductosTitle_descripcion}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.EditInvProductosLabel_idSubFamilia}" for="idSubFamilia" />
                         <p:selectOneMenu id="idSubFamilia" value="#{invProductosController.selected.idSubFamilia}" >
@@ -30,7 +30,7 @@
                             <f:selectItems value="#{invSubfamiliasController.items}"
                                            var="idSubFamiliaItem"
                                            itemValue="#{idSubFamiliaItem}"
-                                           itemLabel="#{idSubFamiliaItem.idSubFamilia.toString()}"
+                                           itemLabel="#{idSubFamiliaItem.nombreSubFamilia}"
                                            />
                             <f:converter binding="#{invSubfamiliasConverter}"/>
                         </p:selectOneMenu>
@@ -41,7 +41,7 @@
                             <f:selectItems value="#{invUnidadmedidaController.items}"
                                            var="idUnidadItem"
                                            itemValue="#{idUnidadItem}"
-                                           itemLabel="#{idUnidadItem.idUnidad.toString()}"
+                                           itemLabel="#{idUnidadItem.nombreUnidad}"
                                            />
                             <f:converter binding="#{invUnidadmedidaConverter}"/>
                         </p:selectOneMenu>

@@ -25,10 +25,10 @@
                         <h:outputText value="#{invProductosController.selected.descripcion}" title="#{myBundle.ViewInvProductosTitle_descripcion}"/>
 
                         <h:outputText value="#{myBundle.ViewInvProductosLabel_idSubFamilia}"/>
-                        <h:outputText value="#{invProductosController.selected.idSubFamilia.idSubFamilia}"/>
+                        <h:outputText value="#{invProductosController.selected.idSubFamilia.nombreSubFamilia}"/>
 
                         <h:outputText value="#{myBundle.ViewInvProductosLabel_idUnidad}"/>
-                        <h:outputText value="#{invProductosController.selected.idUnidad.idUnidad}"/>
+                        <h:outputText value="#{invProductosController.selected.idUnidad.nombreUnidad}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="InvProductosViewDialog.hide()"/>
                 </h:panelGroup>

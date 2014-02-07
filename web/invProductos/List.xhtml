@@ -33,23 +33,23 @@
                     </f:facet>
                     <h:outputText value="#{item.nombreProducto}"/>
                 </p:column>
-                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListInvProductosTitle_descripcion}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.descripcion}"/>
-                </p:column>
                 <p:column sortBy="#{item.idSubFamilia.idSubFamilia}" filterBy="#{item.idSubFamilia.idSubFamilia}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListInvProductosTitle_idSubFamilia}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idSubFamilia.idSubFamilia}"/>
+                    <h:outputText value="#{item.idSubFamilia.nombreSubFamilia}"/>
                 </p:column>
                 <p:column sortBy="#{item.idUnidad.idUnidad}" filterBy="#{item.idUnidad.idUnidad}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListInvProductosTitle_idUnidad}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idUnidad.idUnidad}"/>
+                    <h:outputText value="#{item.idUnidad.nombreUnidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListInvProductosTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
                 </p:column>
                 <f:facet name="footer">
                     <div class="footer-section">

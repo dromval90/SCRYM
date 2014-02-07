@@ -27,17 +27,17 @@
                     </f:facet>
                     <h:outputText value="#{item.idMunicipio}"/>
                 </p:column>
+                 <p:column sortBy="#{item.idDepartamento.idDepartamento}" filterBy="#{item.idDepartamento.idDepartamento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMunicipiosTitle_idDepartamento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDepartamento.nombreDepartamento}"/>
+                </p:column>
                 <p:column sortBy="#{item.nombreMunicipio}" filterBy="#{item.nombreMunicipio}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMunicipiosTitle_nombreMunicipio}"/>
                     </f:facet>
                     <h:outputText value="#{item.nombreMunicipio}"/>
-                </p:column>
-                <p:column sortBy="#{item.idDepartamento.idDepartamento}" filterBy="#{item.idDepartamento.idDepartamento}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMunicipiosTitle_idDepartamento}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idDepartamento.idDepartamento}"/>
                 </p:column>
                 <f:facet name="footer">
                     <div class="footer-section">

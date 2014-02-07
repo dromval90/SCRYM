@@ -55,7 +55,7 @@
                             <f:converter binding="#{ordentrabajoConverter}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{detordentrabajoController.save}" value="#{myBundle.Save}" update="display,:DetordentrabajoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoEditDialog);"/>
+                    <p:commandButton actionListener="#{detordentrabajoController.save}" value="#{myBundle.Save}" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoEditDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="DetordentrabajoEditDialog.hide()"/>
                 </h:panelGroup>
 

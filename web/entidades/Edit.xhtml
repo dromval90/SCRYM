@@ -19,7 +19,7 @@
                         <h:outputText id="idEntidad" value="#{entidadesController.selected.idEntidad}" />
 
                         <p:outputLabel value="#{myBundle.EditEntidadesLabel_nombreEntidad}" for="nombreEntidad" />
-                        <p:inputText id="nombreEntidad" value="#{entidadesController.selected.nombreEntidad}" title="#{myBundle.EditEntidadesTitle_nombreEntidad}" size="255" maxlength="255"/>
+                        <p:inputText id="nombreEntidad" value="#{entidadesController.selected.nombreEntidad}" title="#{myBundle.EditEntidadesTitle_nombreEntidad}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.EditEntidadesLabel_numNit}" for="numNit" />
                         <p:inputText id="numNit" value="#{entidadesController.selected.numNit}" title="#{myBundle.EditEntidadesTitle_numNit}" size="16" maxlength="16"/>
@@ -28,7 +28,7 @@
                         <p:inputText id="numNrc" value="#{entidadesController.selected.numNrc}" title="#{myBundle.EditEntidadesTitle_numNrc}" size="16" maxlength="16"/>
 
                         <p:outputLabel value="#{myBundle.EditEntidadesLabel_direccion}" for="direccion" />
-                        <p:inputText id="direccion" value="#{entidadesController.selected.direccion}" title="#{myBundle.EditEntidadesTitle_direccion}" size="255" maxlength="255"/>
+                        <p:inputText id="direccion" value="#{entidadesController.selected.direccion}" title="#{myBundle.EditEntidadesTitle_direccion}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.EditEntidadesLabel_idMunicipio}" for="idMunicipio" />
                         <p:selectOneMenu id="idMunicipio" value="#{entidadesController.selected.idMunicipio}" >
@@ -36,7 +36,7 @@
                             <f:selectItems value="#{municipiosController.items}"
                                            var="idMunicipioItem"
                                            itemValue="#{idMunicipioItem}"
-                                           itemLabel="#{idMunicipioItem.idMunicipio.toString()}"
+                                           itemLabel="#{idMunicipioItem.nombreMunicipio}"
                                            />
                             <f:converter binding="#{municipiosConverter}"/>
                         </p:selectOneMenu>
