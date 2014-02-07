@@ -41,7 +41,7 @@
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_iva}" for="iva" />
                         <p:inputText id="iva" value="#{detordentrabajoController.selected.iva}" title="#{myBundle.CreateDetordentrabajoTitle_iva}"/>
 
-                       
+          
                     </p:panelGrid>
                     <p:commandButton actionListener="#{detordentrabajoController.saveNew}" value="#{myBundle.Save}" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoCreateDialog);"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="DetordentrabajoCreateDialog.hide()"/>
