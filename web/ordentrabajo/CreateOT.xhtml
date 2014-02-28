@@ -16,15 +16,32 @@
                     <p:panelGrid columns="4" style="margin: 0 auto;">
                          <f:facet name="header">
                             <div>
-                                <p:commandButton id="createButton" icon="ui-icon-document"   value="Nueva Orden" actionListener="#{ordenencController.prepareCreate}" update="@form" process="@this" disabled="#{!empty ordenencController.selected}"/>
+                                <p:commandButton id="createButton" icon="ui-icon-document"   value="Nueva Orden" actionListener="#{ordentrabajoController.prepareCreate}" update="@form" process="@this" disabled="#{!empty ordentrabajoController.selected}"/>
                                 
                             </div>
                         </f:facet>  
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idOrden}" for="idOrden" />
-                        <p:inputText id="idOrden" value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.CreateOrdentrabajoTitle_idOrden}" required="true" requiredMessage="#{myBundle.CreateOrdentrabajoRequiredMessage_idOrden}"/>
+                        <p:outputLabel id="idOrden" value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.CreateOrdentrabajoTitle_idOrden}" />
 
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_fechaOrden}" for="fechaOrden" />
                         <p:calendar id="fechaOrden" pattern="dd/MM/yyyy" value="#{ordentrabajoController.selected.fechaOrden}" title="#{myBundle.EditOrdentrabajoTitle_fechaOrden}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_fechaOrden}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idEntidad}" for="idEntidad" />
+                        <p:selectOneMenu id="idEntidad" filter="true" filterMatchMode="contains" value="#{ordentrabajoController.selected.idEntidad}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_idEntidad}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{entidadesController.items}"
+                                           var="idEntidadItem"
+                                           itemValue="#{idEntidadItem}"
+                                           itemLabel="#{idEntidadItem.nombreEntidad}"
+                                           />
+                            <f:converter binding="#{entidadesConverter}"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Cliente" for="cliente" />
+                        <p:inputText id="cliente" value="#{ordentrabajoController.selected.cliente}" title="Cliente" size="50" maxlength="100"/>
+
+                        <p:outputLabel value="Telefono" for="telefono" />
+                        <p:inputText id="telefono" value="#{ordentrabajoController.selected.telefono}" title="Telefono Cliente" size="20" maxlength="75"/>
 
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_entregado}" for="entregado" />
                         <p:selectOneMenu id="entregado" value="#{ordentrabajoController.selected.entregado}" required="true" requiredMessage="#{myBundle.CreateOrdentrabajoRequiredMessage_entregado}">
@@ -35,40 +52,36 @@
                         
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_observaciones}" for="observaciones" />
                         <p:inputTextarea id="observaciones" rows="6" cols="33" maxlength="150" title="#{myBundle.CreateOrdentrabajoTitle_observaciones}" value="#{ordenencController.selected.observaciones}"/>                      
-
-                        <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idEntidad}" for="idEntidad" />
-                        <p:selectOneMenu id="idEntidad" value="#{ordentrabajoController.selected.idEntidad}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_idEntidad}">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{entidadesController.items}"
-                                           var="idEntidadItem"
-                                           itemValue="#{idEntidadItem}"
-                                           itemLabel="#{idEntidadItem.nombreEntidad}"
-                                           />
-                            <f:converter binding="#{entidadesConverter}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
                 </h:panelGroup>
                 
                 
                 <p:panel header="#{myBundle.ListDetordentrabajoTitle}">
 
-            <p:dataTable id="datalist" value="#{detordentrabajoController.items}" var="item"
-                         selectionMode="single" selection="#{detordentrabajoController.selected}"
-                         rowKey="#{item.idDetOrden}"
+                    <p:dataTable id="datalist" value="#{ordentrabajoController.LDetordentrabajo}" var="item"
+                                 selectionMode="single" selection="#{detordentrabajoController.selected}"
+                                 rowKey="#{item.idDetOrden}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30"
                          >
 
-                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                <p:column sortBy="#{item.idDetOrden}" filterBy="#{item.idDetOrden}">
+               <p:ajax event="rowSelect"   update="createButtonx deleteButton"/>
+               <p:ajax event="rowUnselect" update="createButtonx deleteButton"/>
+               
+                <p:column sortBy="#{item.idProducto.idProducto}" filterBy="#{item.idProducto.idProducto}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idDetOrden}"/>
+                        <h:outputText value="Codigo Producto"/>
                     </f:facet>
-                    <h:outputText value="#{item.idDetOrden}"/>
+                            <h:outputText value="#{item.idProducto.idProducto}"/>
+                </p:column>        
+                        <p:column sortBy="#{item.idProducto.nombreProducto}" filterBy="#{item.idProducto.nombreProducto}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Producto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProducto.nombreProducto}"/>
                 </p:column>
+               
                 <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListDetordentrabajoTitle_descripcion}"/>
@@ -87,36 +100,25 @@
                     </f:facet>
                     <h:outputText value="#{item.precio}"/>
                 </p:column>
-                <p:column sortBy="#{item.iva}" filterBy="#{item.iva}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_iva}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.iva}"/>
-                </p:column>
-                <p:column sortBy="#{item.descuento}" filterBy="#{item.descuento}">
+               <p:column sortBy="#{item.descuento}" filterBy="#{item.descuento}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListDetordentrabajoTitle_descuento}"/>
                     </f:facet>
                     <h:outputText value="#{item.descuento}"/>
                 </p:column>
-                <p:column sortBy="#{item.idProducto.descripcion}" filterBy="#{item.idProducto.descripcion}">
+                <p:column sortBy="#{item.iva}" filterBy="#{item.iva}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idProducto}"/>
+                        <h:outputText value="IVA"/>
                     </f:facet>
-                    <h:outputText value="#{item.idProducto.descripcion}"/>
+                    <h:outputText value="#{item.iva}"/>
                 </p:column>
-                <p:column sortBy="#{item.idOrden.idOrden}" filterBy="#{item.idOrden.idOrden}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListDetordentrabajoTitle_idOrden}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idOrden.idOrden}"/>
-                </p:column>
+                
+               
+               
                 <f:facet name="footer">
                     <div class="footer-section">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{detordentrabajoController.prepareCreate}" update=":DetordentrabajoCreateForm" oncomplete="DetordentrabajoCreateDialog.show()"/>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":DetordentrabajoViewForm" oncomplete="DetordentrabajoViewDialog.show()" disabled="#{empty detordentrabajoController.selected}"/>
-                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DetordentrabajoEditForm" oncomplete="DetordentrabajoEditDialog.show()" disabled="#{empty detordentrabajoController.selected}"/>
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{detordentrabajoController.delete}" update=":growl,datalist" disabled="#{empty detordentrabajoController.selected}"/>
+                        <p:commandButton id="createButtonx" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{ordentrabajoController.prepareCreate2}" update=":DetordentrabajoCreateForm, :growl" oncomplete="DetordentrabajoCreateDialog.show()" process="@this" disabled="#{empty ordentrabajoController.selected}"/>                      
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{ordentrabajoController.deleteDetalleRequisicion(item)}" update=":growl,datalist" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}"/>
                     </div>
                 </f:facet>
 

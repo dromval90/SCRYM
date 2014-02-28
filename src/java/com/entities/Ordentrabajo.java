@@ -58,6 +58,12 @@ public class Ordentrabajo implements Serializable {
     @Size(max = 255)
     @Column(name = "observaciones")
     private String observaciones;
+    @Size(max = 100)
+    @Column(name = "cliente")
+    private String cliente;
+    @Size(max = 75)
+    @Column(name = "telefono")
+    private String telefono;
     @JoinColumn(name = "idEntidad", referencedColumnName = "idEntidad")
     @ManyToOne(optional = false)
     private Entidades idEntidad;
@@ -107,6 +113,22 @@ public class Ordentrabajo implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Entidades getIdEntidad() {

@@ -16,7 +16,7 @@
                     <p:panelGrid columns="2">
                         
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_idProducto}" for="idProducto" />
-                        <p:selectOneMenu id="idProducto" value="#{detordentrabajoController.selected.idProducto}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idProducto}">
+                        <p:selectOneMenu id="idProducto" value="#{ordentrabajoController.detalleRequisicion.idProducto}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idProducto}">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{invProductosController.items}"
                                            var="idProductoItem"
@@ -27,22 +27,22 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{detordentrabajoController.selected.descripcion}" title="#{myBundle.CreateDetordentrabajoTitle_descripcion}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_descripcion}" size="75" maxlength="255"/>
+                        <p:inputText id="descripcion" value="#{ordentrabajoController.detalleRequisicion.descripcion}" title="#{myBundle.CreateDetordentrabajoTitle_descripcion}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_descripcion}" size="75" maxlength="255"/>
 
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_cantidad}" for="cantidad" />
-                        <p:inputText id="cantidad" value="#{detordentrabajoController.selected.cantidad}" title="#{myBundle.CreateDetordentrabajoTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_cantidad}"/>
+                        <p:inputText id="cantidad" value="#{ordentrabajoController.detalleRequisicion.cantidad}" title="#{myBundle.CreateDetordentrabajoTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_cantidad}"/>
 
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_precio}" for="precio" />
-                        <p:inputText id="precio" value="#{detordentrabajoController.selected.precio}" title="#{myBundle.CreateDetordentrabajoTitle_precio}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_precio}"/>
+                        <p:inputText id="precio" value="#{ordentrabajoController.detalleRequisicion.precio}" title="#{myBundle.CreateDetordentrabajoTitle_precio}" required="true" requiredMessage="#{myBundle.CreateDetordentrabajoRequiredMessage_precio}"/>
 
                          <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_descuento}" for="descuento" />
-                        <p:inputText id="descuento" value="#{detordentrabajoController.selected.descuento}" title="#{myBundle.CreateDetordentrabajoTitle_descuento}"/>
+                        <p:inputText id="descuento" value="#{ordentrabajoController.detalleRequisicion.descuento}" title="#{myBundle.CreateDetordentrabajoTitle_descuento}"/>
                         
                         <p:outputLabel value="#{myBundle.CreateDetordentrabajoLabel_iva}" for="iva" />
-                        <p:inputText id="iva" value="#{detordentrabajoController.selected.iva}" title="#{myBundle.CreateDetordentrabajoTitle_iva}"/>
+                        <p:inputText id="iva" value="#{ordentrabajoController.detalleRequisicion.iva}" title="#{myBundle.CreateDetordentrabajoTitle_iva}"/>
           
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{detordentrabajoController.saveNew}" value="#{myBundle.Save}" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoCreateDialog);"/>
+                    <p:commandButton actionListener="#{ordentrabajoController.addDetalleRequisicion}" value="#{myBundle.Save}" update="display,:OrdentrabajoCreateForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoCreateDialog);" process="@form"/>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="DetordentrabajoCreateDialog.hide()"/>
                 </h:panelGroup>
 
