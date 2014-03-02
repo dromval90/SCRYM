@@ -7,17 +7,22 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
+           <p:dialog id="mas" widgetVar="statusDialog" header="Status"  modal="true">  
+             <p:outputLabel value="Cargando...Espere Por Favor"  style="font-size: 15px; font-weight: bold"  /> <br/>
+             <center><p:graphicImage value="/resources/img/loading.gif" /></center>
+            </p:dialog> 
        
 
             <h:form id="OrdentrabajoCreateForm">
-
+             
                 <h:panelGroup id="display">
                     <p:panelGrid columns="4" style="margin: 0 auto;">
                          <f:facet name="header">
                             <div>
                                 <p:commandButton id="createButton" icon="ui-icon-document"   value="Nueva Orden" actionListener="#{ordentrabajoController.prepareCreate}" update="@form" process="@this" disabled="#{!empty ordentrabajoController.selected}"/>
-                                
+                                <p:commandButton id="createButtonx" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{ordentrabajoController.prepareCreate2}" update=":DetordentrabajoCreateForm, :growl" oncomplete="DetordentrabajoCreateDialog.show()" disabled="#{empty ordentrabajoController.selected}"/>                      
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{ordentrabajoController.deleteDetalleRequisicion(item)}" update=":growl,datalist" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" process="@this"/>
+                                <p:commandButton id="SaveNew" icon="ui-icon ui-icon-disk" actionListener="#{ordentrabajoController.saveNewRequisicion}" value="Guardar OT"  update="@form,:growl" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" onclick="statusDialog.show()"  oncomplete="statusDialog.hide()" process="@this"/> 
                             </div>
                         </f:facet>  
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idOrden}" for="idOrden" />
@@ -51,7 +56,7 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_observaciones}" for="observaciones" />
-                        <p:inputTextarea id="observaciones" rows="6" cols="33" maxlength="150" title="#{myBundle.CreateOrdentrabajoTitle_observaciones}" value="#{ordenencController.selected.observaciones}"/>                      
+                        <p:inputTextarea id="observaciones" rows="6" cols="33" maxlength="150" title="#{myBundle.CreateOrdentrabajoTitle_observaciones}" value="#{ordentrabajoController.selected.observaciones}"/>                      
                     </p:panelGrid>
                 </h:panelGroup>
                 
@@ -66,8 +71,7 @@
                          rowsPerPageTemplate="10,20,30"
                          >
 
-               <p:ajax event="rowSelect"   update="createButtonx deleteButton"/>
-               <p:ajax event="rowUnselect" update="createButtonx deleteButton"/>
+
                
                 <p:column sortBy="#{item.idProducto.idProducto}" filterBy="#{item.idProducto.idProducto}">
                     <f:facet name="header">
@@ -117,8 +121,7 @@
                
                 <f:facet name="footer">
                     <div class="footer-section">
-                        <p:commandButton id="createButtonx" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{ordentrabajoController.prepareCreate2}" update=":DetordentrabajoCreateForm, :growl" oncomplete="DetordentrabajoCreateDialog.show()" process="@this" disabled="#{empty ordentrabajoController.selected}"/>                      
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{ordentrabajoController.deleteDetalleRequisicion(item)}" update=":growl,datalist" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}"/>
+                        
                     </div>
                 </f:facet>
 

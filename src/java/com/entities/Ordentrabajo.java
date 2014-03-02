@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,12 +39,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ordentrabajo.findByIdOrden", query = "SELECT o FROM Ordentrabajo o WHERE o.idOrden = :idOrden"),
     @NamedQuery(name = "Ordentrabajo.findByFechaOrden", query = "SELECT o FROM Ordentrabajo o WHERE o.fechaOrden = :fechaOrden"),
     @NamedQuery(name = "Ordentrabajo.findByEntregado", query = "SELECT o FROM Ordentrabajo o WHERE o.entregado = :entregado"),
-    @NamedQuery(name = "Ordentrabajo.findByObservaciones", query = "SELECT o FROM Ordentrabajo o WHERE o.observaciones = :observaciones")})
+    @NamedQuery(name = "Ordentrabajo.findByObservaciones", query = "SELECT o FROM Ordentrabajo o WHERE o.observaciones = :observaciones"),
+    @NamedQuery(name = "Ordentrabajo.findByCliente", query = "SELECT o FROM Ordentrabajo o WHERE o.cliente = :cliente"),
+    @NamedQuery(name = "Ordentrabajo.findByTelefono", query = "SELECT o FROM Ordentrabajo o WHERE o.telefono = :telefono")})
 public class Ordentrabajo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idOrden")
     private Integer idOrden;
     @Basic(optional = false)

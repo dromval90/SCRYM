@@ -1,5 +1,6 @@
 package com.entities;
 
+import com.ejb.SB_Ot;
 import com.entities.util.JsfUtil;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,9 +17,12 @@ import javax.faces.event.ActionEvent;
 @ManagedBean(name = "ordentrabajoController")
 @ViewScoped
 public class OrdentrabajoController extends AbstractController<Ordentrabajo> implements Serializable {
+    @EJB
+    private SB_Ot sB_Ot;
 
     @EJB
     private OrdentrabajoFacade ejbFacade;
+    
     
     Detordentrabajo DetalleRequisicion;
     //List LDetordentrabajo = new ArrayList();
@@ -103,5 +107,11 @@ public class OrdentrabajoController extends AbstractController<Ordentrabajo> imp
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+      
+    public void saveNewRequisicion(){
+        String msg ="";
+        msg = sB_Ot.insertarRequisicion(this.getSelected(), this.getLDetordentrabajo());
+        JsfUtil.addSuccessMessage(msg);
     }
 }
