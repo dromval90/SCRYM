@@ -8,9 +8,11 @@ import com.entities.Detordentrabajo;
 import com.entities.DetordentrabajoFacade;
 import com.entities.Ordentrabajo;
 import com.entities.OrdentrabajoFacade;
+import com.entities.util.JsfUtil;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -27,25 +29,26 @@ public class SB_Ot {
     // "Insert Code > Add Business Method")
     
    
-   public String insertarRequisicion(Ordentrabajo EncOrden, List<Detordentrabajo> DetalleReq){
-       String msg ="";
+   public void insertarRequisicion(Ordentrabajo EncOrden, List<Detordentrabajo> DetalleReq){
+       String msg="";
        try{
            ordentrabajoFacade.edit(EncOrden);
-          
+
+           //em.refresh(EncOrden);
            
            msg="**Encabezado Requisicion Almacenado Correctamente";
            for(Detordentrabajo DetReq : DetalleReq){
                 DetReq.setIdDetOrden(null);
                 //DetReq.getIdOrden().setIdOrden(EncOrden.getIdOrden());
                 detordentrabajoFacade.edit(DetReq);
+                DetReq.setIdDetOrden(1);
             }
            msg+=" **Detalle Requisicion Almacenado Correctamente";
-          
-     
+           JsfUtil.addSuccessMessage(msg);
        }catch(Exception ex){
-           msg="Ocurrior Un Error, No pudo completarse el Ingreso de la Requisicion:";
+           msg="Ocurrior Un Error, No pudo completarse el Ingreso de la Orden de Trabajo:";
+           JsfUtil.addErrorMessage(msg);
        }   
-       return msg;
    }
 
 }

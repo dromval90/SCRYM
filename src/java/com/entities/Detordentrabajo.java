@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Detordentrabajo.findAll", query = "SELECT d FROM Detordentrabajo d"),
     @NamedQuery(name = "Detordentrabajo.findByIdDetOrden", query = "SELECT d FROM Detordentrabajo d WHERE d.idDetOrden = :idDetOrden"),
+    @NamedQuery(name = "Detordentrabajo.findByIdOrden", query = "SELECT d FROM Detordentrabajo d WHERE d.idOrden.idOrden = :idOrden"),
     @NamedQuery(name = "Detordentrabajo.findByDescripcion", query = "SELECT d FROM Detordentrabajo d WHERE d.descripcion = :descripcion"),
     @NamedQuery(name = "Detordentrabajo.findByCantidad", query = "SELECT d FROM Detordentrabajo d WHERE d.cantidad = :cantidad"),
     @NamedQuery(name = "Detordentrabajo.findByPrecio", query = "SELECT d FROM Detordentrabajo d WHERE d.precio = :precio"),
@@ -50,15 +51,16 @@ public class Detordentrabajo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "cantidad")
-    private int cantidad;
+    private double cantidad;
     @Basic(optional = false)
     @NotNull
     @Column(name = "precio")
-    private int precio;
+    private double precio;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "iva")
-    private Integer iva;
+    private Double iva;
     @Column(name = "descuento")
-    private Integer descuento;
+    private Double descuento;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false)
     private InvProductos idProducto;
@@ -73,7 +75,7 @@ public class Detordentrabajo implements Serializable {
         this.idDetOrden = idDetOrden;
     }
 
-    public Detordentrabajo(Integer idDetOrden, String descripcion, int cantidad, int precio) {
+    public Detordentrabajo(Integer idDetOrden, String descripcion, double cantidad, double precio) {
         this.idDetOrden = idDetOrden;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
@@ -96,35 +98,35 @@ public class Detordentrabajo implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Integer getIva() {
+    public Double getIva() {
         return iva;
     }
 
-    public void setIva(Integer iva) {
+    public void setIva(Double iva) {
         this.iva = iva;
     }
 
-    public Integer getDescuento() {
+    public Double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Integer descuento) {
+    public void setDescuento(Double descuento) {
         this.descuento = descuento;
     }
 

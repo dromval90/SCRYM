@@ -20,7 +20,7 @@
 
                         <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_fechaOrden}"/>
                         <h:outputText value="#{ordentrabajoController.selected.fechaOrden}" title="#{myBundle.ViewOrdentrabajoTitle_fechaOrden}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
 
                         <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_entregado}"/>
@@ -31,6 +31,19 @@
 
                         <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_idEntidad}"/>
                         <h:outputText value="#{ordentrabajoController.selected.idEntidad.idEntidad}"/>
+                        
+                        <h:outputText value="Nombre Entidad"/>
+                        <h:outputText value="#{ordentrabajoController.selected.idEntidad.nombreEntidad}"/>
+                        
+                        <h:outputText value="Cliente"/>
+                        <h:outputText value="#{ordentrabajoController.selected.cliente}"/>
+                        
+                        <h:outputText value="Telefono"/>
+                        <h:outputText value="#{ordentrabajoController.selected.telefono}"/>
+                         <h3>Detalle Requisicion</h3>  
+                         <p:dataList value="#{ordentrabajoController.listDetorden}" var="ldetorden" itemType="circle">  
+                            #{ldetorden.idProducto.idProducto} || #{ldetorden.idProducto.nombreProducto} || #{ldetorden.cantidad} || #{ldetorden.precio} || #{ldetorden.descuento} || #{ldetorden.iva} 
+                        </p:dataList>  
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="OrdentrabajoViewDialog.hide()"/>
                 </h:panelGroup>

@@ -20,13 +20,11 @@
                          <f:facet name="header">
                             <div>
                                 <p:commandButton id="createButton" icon="ui-icon-document"   value="Nueva Orden" actionListener="#{ordentrabajoController.prepareCreate}" update="@form" process="@this" disabled="#{!empty ordentrabajoController.selected}"/>
-                                <p:commandButton id="createButtonx" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{ordentrabajoController.prepareCreate2}" update=":DetordentrabajoCreateForm, :growl" oncomplete="DetordentrabajoCreateDialog.show()" disabled="#{empty ordentrabajoController.selected}"/>                      
-                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{ordentrabajoController.deleteDetalleRequisicion(item)}" update=":growl,datalist" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" process="@this"/>
-                                <p:commandButton id="SaveNew" icon="ui-icon ui-icon-disk" actionListener="#{ordentrabajoController.saveNewRequisicion}" value="Guardar OT"  update="@form,:growl" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" onclick="statusDialog.show()"  oncomplete="statusDialog.hide()" process="@this"/> 
+                           
                             </div>
                         </f:facet>  
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_idOrden}" for="idOrden" />
-                        <p:outputLabel id="idOrden" value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.CreateOrdentrabajoTitle_idOrden}" />
+                        <p:outputLabel id="idOrden" value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.CreateOrdentrabajoTitle_idOrden}" style="font-size: 15px; font-weight: bold"  />
 
                         <p:outputLabel value="#{myBundle.CreateOrdentrabajoLabel_fechaOrden}" for="fechaOrden" />
                         <p:calendar id="fechaOrden" pattern="dd/MM/yyyy" value="#{ordentrabajoController.selected.fechaOrden}" title="#{myBundle.EditOrdentrabajoTitle_fechaOrden}" required="true" requiredMessage="#{myBundle.EditOrdentrabajoRequiredMessage_fechaOrden}" showOn="button"/>
@@ -121,7 +119,9 @@
                
                 <f:facet name="footer">
                     <div class="footer-section">
-                        
+                        <p:commandButton id="createButtonx" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{ordentrabajoController.prepareCreate2}" update=":DetordentrabajoCreateForm, :growl" oncomplete="DetordentrabajoCreateDialog.show()" disabled="#{empty ordentrabajoController.selected}"/>                      
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{ordentrabajoController.deleteDetalleRequisicion(item)}" update=":growl,datalist" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" />
+                        <p:commandButton id="SaveNew" icon="ui-icon ui-icon-disk" actionListener="#{ordentrabajoController.saveNewRequisicion}" value="Guardar OT"  update=":growl, @form" disabled="#{empty ordentrabajoController.selected or !empty ordentrabajoController.selected.idOrden}" onclick="statusDialog.show()"  oncomplete="statusDialog.hide()" /> 
                     </div>
                 </f:facet>
 

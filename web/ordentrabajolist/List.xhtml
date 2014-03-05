@@ -17,7 +17,8 @@
                          rows="10"
                          rowsPerPageTemplate="10,20,30"
                          >
-
+                <p:ajax event="rowSelect"   update="viewButton viewprint"/>
+                <p:ajax event="rowUnselect" update="viewButton viewprint"/>
                
                 <p:column sortBy="#{item.idOrden}" filterBy="#{item.idOrden}">
                     <f:facet name="header">
@@ -51,9 +52,31 @@
                     </f:facet>
                     <h:outputText value="#{item.idEntidad.idEntidad}"/>
                 </p:column>
+                <p:column sortBy="#{item.idEntidad.nombreEntidad}" filterBy="#{item.idEntidad.nombreEntidad}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Entidad"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idEntidad.nombreEntidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.cliente}" filterBy="#{item.cliente}">
+                    <f:facet name="header">
+                        <h:outputText value="Cliente"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cliente}"/>
+                </p:column>
+                <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </p:column>
+                
                 <f:facet name="footer">
                     <div class="footer-section">
-                        
+                       
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":OrdentrabajoViewForm" oncomplete="OrdentrabajoViewDialog.show()" disabled="#{empty ordentrabajoController.selected}"/>
+                        <p:commandButton id="viewprint"   icon="ui-icon ui-icon-print" actionListener="#{ordentrabajoController.imprimirRequisicion}" ajax="false" value="Imprimir"   disabled="#{empty ordentrabajoController.selected}"/>
+                       
                     </div>
                 </f:facet>
 

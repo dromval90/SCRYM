@@ -7,6 +7,7 @@ package com.entities;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,5 +26,20 @@ public class OrdentrabajoFacade extends AbstractFacade<Ordentrabajo> {
     public OrdentrabajoFacade() {
         super(Ordentrabajo.class);
     }
+    
+    public Long findPk(){
+        Long val;
+        try{
+            Query q =  em.createNativeQuery("select IfNULL(MAX(idOrden),0) + 1 from ordentrabajo ");
+                val = (Long) q.getSingleResult();
+               
+            return val;
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+        
+
+    } 
     
 }

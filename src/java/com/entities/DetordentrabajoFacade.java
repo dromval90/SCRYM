@@ -4,9 +4,11 @@
  */
 package com.entities;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -26,4 +28,16 @@ public class DetordentrabajoFacade extends AbstractFacade<Detordentrabajo> {
         super(Detordentrabajo.class);
     }
     
+    public List<Detordentrabajo> findNumOrden(Integer numOrden){
+	 TypedQuery<Detordentrabajo> q;
+         try{
+                q = em.createNamedQuery("Detordentrabajo.findByIdOrden", Detordentrabajo.class )		    
+		    .setParameter("idOrden",  numOrden );
+                return q.getResultList();
+         }catch(Exception ex){
+             ex.printStackTrace();
+         }
+         return null;
+    
+    }
 }
