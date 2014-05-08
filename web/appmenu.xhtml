@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="Departamentos" outcome="/departamentos/index" />
+                    <p:menuitem value="Municipios" outcome="/municipios/index" />
+                </p:submenu>
+                <p:submenu label="#{myBundle.Entidades}">
+                    <p:menuitem value="Entidades" outcome="/entidades/index" />
+                </p:submenu>
+                <p:submenu label="#{myBundle.Inventario}">
+                    <p:menuitem value="Unidad de Medida" outcome="/invUnidadmedida/index" />
+                    <p:menuitem value="Familias" outcome="/invFamilias/index" />
+                    <p:menuitem value="SubFamilias" outcome="/invSubfamilias/index" />
+                    <p:menuitem value="Productos" outcome="/invProductos/index" />
+                    <p:menuitem value="Ingreso Orden Trabajo" outcome="/ordentrabajo/index" />
+                    <p:menuitem value="Lista Orden Trabajo" outcome="/ordentrabajolist/index" />                  
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

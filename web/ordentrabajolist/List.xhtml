@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="OrdentrabajoListForm">
+
+        <p:panel header="#{myBundle.ListOrdentrabajoTitle}">
+
+            <p:dataTable id="datalist" value="#{ordentrabajoController.items}" var="item"
+                         selectionMode="single" selection="#{ordentrabajoController.selected}"
+                         rowKey="#{item.idOrden}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30" sortBy="#{item.fechaOrden}" sortOrder="Descending">
+                <p:ajax event="rowSelect"   update="viewButton viewprint"/>
+                <p:ajax event="rowUnselect" update="viewButton viewprint"/>
+               
+                <p:column sortBy="#{item.idOrden}" filterBy="#{item.idOrden}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListOrdentrabajoTitle_idOrden}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idOrden}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaOrden}" filterBy="#{item.fechaOrden}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListOrdentrabajoTitle_fechaOrden}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaOrden}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.entregado}" filterBy="#{item.entregado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListOrdentrabajoTitle_entregado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.entregado}"/>
+                </p:column>
+                <p:column sortBy="#{item.observaciones}" filterBy="#{item.observaciones}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListOrdentrabajoTitle_observaciones}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.observaciones}"/>
+                </p:column>
+                <p:column sortBy="#{item.idEntidad.idEntidad}" filterBy="#{item.idEntidad.idEntidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListOrdentrabajoTitle_idEntidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idEntidad.idEntidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.idEntidad.nombreEntidad}" filterBy="#{item.idEntidad.nombreEntidad}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Entidad"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idEntidad.nombreEntidad}"/>
+                </p:column>
+                <p:column sortBy="#{item.cliente}" filterBy="#{item.cliente}">
+                    <f:facet name="header">
+                        <h:outputText value="Cliente"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cliente}"/>
+                </p:column>
+                <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </p:column>
+                
+                <f:facet name="footer">
+                    <div class="footer-section">
+                       
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":OrdentrabajoViewForm" oncomplete="OrdentrabajoViewDialog.show()" disabled="#{empty ordentrabajoController.selected}"/>
+                        <p:commandButton id="viewprint"   icon="ui-icon ui-icon-print" actionListener="#{ordentrabajoController.imprimirRequisicion}" ajax="false" value="Imprimir"   disabled="#{empty ordentrabajoController.selected}"/>
+                       
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

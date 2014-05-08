@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvSubfamiliasCreateDlg" widgetVar="InvSubfamiliasCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateInvSubfamiliasTitle}" closeOnEscape="true">
+
+            <h:form id="InvSubfamiliasCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreateInvSubfamiliasLabel_nombreSubFamilia}" for="nombreSubFamilia" />
+                        <p:inputText id="nombreSubFamilia" value="#{invSubfamiliasController.selected.nombreSubFamilia}" title="#{myBundle.CreateInvSubfamiliasTitle_nombreSubFamilia}" size="50" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInvSubfamiliasLabel_comentario}" for="comentario" />
+                        <p:inputText id="comentario" value="#{invSubfamiliasController.selected.comentario}" title="#{myBundle.CreateInvSubfamiliasTitle_comentario}" size="50" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInvSubfamiliasLabel_idFamilia}" for="idFamilia" />
+                        <p:selectOneMenu id="idFamilia" value="#{invSubfamiliasController.selected.idFamilia}" required="true" requiredMessage="#{myBundle.EditInvSubfamiliasRequiredMessage_idFamilia}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invFamiliasController.items}"
+                                           var="idFamiliaItem"
+                                           itemValue="#{idFamiliaItem}"
+                                           itemLabel="#{idFamiliaItem.nombreFamilia}"
+                                           />
+                            <f:converter binding="#{invFamiliasConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{invSubfamiliasController.saveNew}" value="#{myBundle.Save}" update="display,:InvSubfamiliasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InvSubfamiliasCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="InvSubfamiliasCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

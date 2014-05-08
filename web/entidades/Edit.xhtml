@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EntidadesEditDlg" widgetVar="EntidadesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditEntidadesTitle}" closeOnEscape="true">
+
+            <h:form id="EntidadesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{entidadesController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditEntidadesLabel_idEntidad}" for="idEntidad" />
+                        <h:outputText id="idEntidad" value="#{entidadesController.selected.idEntidad}" />
+
+                        <p:outputLabel value="#{myBundle.EditEntidadesLabel_nombreEntidad}" for="nombreEntidad" />
+                        <p:inputText id="nombreEntidad" value="#{entidadesController.selected.nombreEntidad}" title="#{myBundle.EditEntidadesTitle_nombreEntidad}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditEntidadesLabel_numNit}" for="numNit" />
+                        <p:inputText id="numNit" value="#{entidadesController.selected.numNit}" title="#{myBundle.EditEntidadesTitle_numNit}" size="16" maxlength="16"/>
+
+                        <p:outputLabel value="#{myBundle.EditEntidadesLabel_numNrc}" for="numNrc" />
+                        <p:inputText id="numNrc" value="#{entidadesController.selected.numNrc}" title="#{myBundle.EditEntidadesTitle_numNrc}" size="16" maxlength="16"/>
+
+                        <p:outputLabel value="#{myBundle.EditEntidadesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{entidadesController.selected.direccion}" title="#{myBundle.EditEntidadesTitle_direccion}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditEntidadesLabel_idMunicipio}" for="idMunicipio" />
+                        <p:selectOneMenu id="idMunicipio" value="#{entidadesController.selected.idMunicipio}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipiosController.items}"
+                                           var="idMunicipioItem"
+                                           itemValue="#{idMunicipioItem}"
+                                           itemLabel="#{idMunicipioItem.nombreMunicipio}"
+                                           />
+                            <f:converter binding="#{municipiosConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{entidadesController.save}" value="#{myBundle.Save}" update="display,:EntidadesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EntidadesEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="EntidadesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

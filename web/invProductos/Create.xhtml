@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvProductosCreateDlg" widgetVar="InvProductosCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateInvProductosTitle}" closeOnEscape="true">
+
+            <h:form id="InvProductosCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreateInvProductosLabel_nombreProducto}" for="nombreProducto" />
+                        <p:inputText id="nombreProducto" value="#{invProductosController.selected.nombreProducto}" title="#{myBundle.CreateInvProductosTitle_nombreProducto}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInvProductosLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{invProductosController.selected.descripcion}" title="#{myBundle.CreateInvProductosTitle_descripcion}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateInvProductosLabel_idSubFamilia}" for="idSubFamilia" />
+                        <p:selectOneMenu id="idSubFamilia" value="#{invProductosController.selected.idSubFamilia}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invSubfamiliasController.items}"
+                                           var="idSubFamiliaItem"
+                                           itemValue="#{idSubFamiliaItem}"
+                                           itemLabel="#{idSubFamiliaItem.nombreSubFamilia}"
+                                           />
+                            <f:converter binding="#{invSubfamiliasConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateInvProductosLabel_idUnidad}" for="idUnidad" />
+                        <p:selectOneMenu id="idUnidad" value="#{invProductosController.selected.idUnidad}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invUnidadmedidaController.items}"
+                                           var="idUnidadItem"
+                                           itemValue="#{idUnidadItem}"
+                                           itemLabel="#{idUnidadItem.nombreUnidad}"
+                                           />
+                            <f:converter binding="#{invUnidadmedidaConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{invProductosController.saveNew}" value="#{myBundle.Save}" update="display,:InvProductosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InvProductosCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="InvProductosCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

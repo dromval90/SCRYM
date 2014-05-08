@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DepartamentosEditDlg" widgetVar="DepartamentosEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditDepartamentosTitle}" closeOnEscape="true">
+
+            <h:form id="DepartamentosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{departamentosController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditDepartamentosLabel_idDepartamento}" for="idDepartamento" />
+                        <h:outputText id="idDepartamento" value="#{departamentosController.selected.idDepartamento}" />
+
+                        <p:outputLabel value="#{myBundle.EditDepartamentosLabel_nombreDepartamento}" for="nombreDepartamento" />
+                        <p:inputText id="nombreDepartamento" value="#{departamentosController.selected.nombreDepartamento}" title="#{myBundle.EditDepartamentosTitle_nombreDepartamento}" required="true" requiredMessage="#{myBundle.EditDepartamentosRequiredMessage_nombreDepartamento}" size="25" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{departamentosController.save}" value="#{myBundle.Save}" update="display,:DepartamentosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DepartamentosEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="DepartamentosEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

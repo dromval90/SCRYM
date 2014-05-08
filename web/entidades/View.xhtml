@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EntidadesViewDlg" widgetVar="EntidadesViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewEntidadesTitle}" closeOnEscape="true">
+
+            <h:form id="EntidadesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{entidadesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_idEntidad}"/>
+                        <h:outputText value="#{entidadesController.selected.idEntidad}" title="#{myBundle.ViewEntidadesTitle_idEntidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_nombreEntidad}"/>
+                        <h:outputText value="#{entidadesController.selected.nombreEntidad}" title="#{myBundle.ViewEntidadesTitle_nombreEntidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_numNit}"/>
+                        <h:outputText value="#{entidadesController.selected.numNit}" title="#{myBundle.ViewEntidadesTitle_numNit}"/>
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_numNrc}"/>
+                        <h:outputText value="#{entidadesController.selected.numNrc}" title="#{myBundle.ViewEntidadesTitle_numNrc}"/>
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_direccion}"/>
+                        <h:outputText value="#{entidadesController.selected.direccion}" title="#{myBundle.ViewEntidadesTitle_direccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewEntidadesLabel_idMunicipio}"/>
+                        <h:outputText value="#{entidadesController.selected.idMunicipio.nombreMunicipio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="EntidadesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

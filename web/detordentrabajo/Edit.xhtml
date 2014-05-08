@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetordentrabajoEditDlg" widgetVar="DetordentrabajoEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditDetordentrabajoTitle}" closeOnEscape="true">
+
+            <h:form id="DetordentrabajoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{detordentrabajoController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditDetordentrabajoLabel_idDetOrden}" for="idDetOrden" />
+                        <h:outputText id="idDetOrden" value="#{detordentrabajoController.selected.idDetOrden}" />
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{detordentrabajoController.selected.descripcion}" title="#{myBundle.EditDetordentrabajoTitle_descripcion}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_descripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{detordentrabajoController.selected.cantidad}" title="#{myBundle.EditDetordentrabajoTitle_cantidad}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_cantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{detordentrabajoController.selected.precio}" title="#{myBundle.EditDetordentrabajoTitle_precio}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_precio}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_iva}" for="iva" />
+                        <p:inputText id="subtotal" value="#{detordentrabajoController.selected.subtotal}" title="#{myBundle.EditDetordentrabajoTitle_iva}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_descuento}" for="descuento" />
+                        <p:inputText id="descuento" value="#{detordentrabajoController.selected.descuento}" title="#{myBundle.EditDetordentrabajoTitle_descuento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_idProducto}" for="idProducto" />
+                        <p:selectOneMenu id="idProducto" value="#{detordentrabajoController.selected.idProducto}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idProducto}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invProductosController.items}"
+                                           var="idProductoItem"
+                                           itemValue="#{idProductoItem}"
+                                           itemLabel="#{idProductoItem.descripcion.toString()}"
+                                           />
+                            <f:converter binding="#{invProductosConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditDetordentrabajoLabel_idOrden}" for="idOrden" />
+                        <p:selectOneMenu id="idOrden" value="#{detordentrabajoController.selected.idOrden}" required="true" requiredMessage="#{myBundle.EditDetordentrabajoRequiredMessage_idOrden}">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ordentrabajoController.items}"
+                                           var="idOrdenItem"
+                                           itemValue="#{idOrdenItem}"
+                                           itemLabel="#{idOrdenItem.idOrden.toString()}"
+                                           />
+                            <f:converter binding="#{ordentrabajoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detordentrabajoController.save}" value="#{myBundle.Save}" update="display,:growl" oncomplete="handleSubmit(xhr,status,args,DetordentrabajoEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="DetordentrabajoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetordentrabajoViewDlg" widgetVar="DetordentrabajoViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewDetordentrabajoTitle}" closeOnEscape="true">
+
+            <h:form id="DetordentrabajoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detordentrabajoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_idDetOrden}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.idDetOrden}" title="#{myBundle.ViewDetordentrabajoTitle_idDetOrden}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_descripcion}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.descripcion}" title="#{myBundle.ViewDetordentrabajoTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_cantidad}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.cantidad}" title="#{myBundle.ViewDetordentrabajoTitle_cantidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_precio}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.precio}" title="#{myBundle.ViewDetordentrabajoTitle_precio}"/>
+
+                        <h:outputText value="SubTotal"/>
+                        <h:outputText value="#{detordentrabajoController.selected.subtotal}" title="SubTotal"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_descuento}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.descuento}" title="#{myBundle.ViewDetordentrabajoTitle_descuento}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_idProducto}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.idProducto.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewDetordentrabajoLabel_idOrden}"/>
+                        <h:outputText value="#{detordentrabajoController.selected.idOrden.idOrden}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="DetordentrabajoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

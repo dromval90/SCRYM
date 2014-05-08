@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvProductosViewDlg" widgetVar="InvProductosViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewInvProductosTitle}" closeOnEscape="true">
+
+            <h:form id="InvProductosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{invProductosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewInvProductosLabel_idProducto}"/>
+                        <h:outputText value="#{invProductosController.selected.idProducto}" title="#{myBundle.ViewInvProductosTitle_idProducto}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvProductosLabel_nombreProducto}"/>
+                        <h:outputText value="#{invProductosController.selected.nombreProducto}" title="#{myBundle.ViewInvProductosTitle_nombreProducto}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvProductosLabel_descripcion}"/>
+                        <h:outputText value="#{invProductosController.selected.descripcion}" title="#{myBundle.ViewInvProductosTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvProductosLabel_idSubFamilia}"/>
+                        <h:outputText value="#{invProductosController.selected.idSubFamilia.nombreSubFamilia}"/>
+
+                        <h:outputText value="#{myBundle.ViewInvProductosLabel_idUnidad}"/>
+                        <h:outputText value="#{invProductosController.selected.idUnidad.nombreUnidad}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="InvProductosViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdentrabajoViewDlg" widgetVar="OrdentrabajoViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewOrdentrabajoTitle}" closeOnEscape="true">
+
+            <h:form id="OrdentrabajoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordentrabajoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_idOrden}"/>
+                        <h:outputText value="#{ordentrabajoController.selected.idOrden}" title="#{myBundle.ViewOrdentrabajoTitle_idOrden}"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_fechaOrden}"/>
+                        <h:outputText value="#{ordentrabajoController.selected.fechaOrden}" title="#{myBundle.ViewOrdentrabajoTitle_fechaOrden}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_entregado}"/>
+                        <h:outputText value="#{ordentrabajoController.selected.entregado}" title="#{myBundle.ViewOrdentrabajoTitle_entregado}"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_observaciones}"/>
+                        <h:outputText value="#{ordentrabajoController.selected.observaciones}" title="#{myBundle.ViewOrdentrabajoTitle_observaciones}"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdentrabajoLabel_idEntidad}"/>
+                        <h:outputText value="#{ordentrabajoController.selected.idEntidad.idEntidad}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="OrdentrabajoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

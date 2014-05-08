@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InvProductosEditDlg" widgetVar="InvProductosEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditInvProductosTitle}" closeOnEscape="true">
+
+            <h:form id="InvProductosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{invProductosController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditInvProductosLabel_idProducto}" for="idProducto" />
+                        <h:outputText id="idProducto" value="#{invProductosController.selected.idProducto}" />
+
+                        <p:outputLabel value="#{myBundle.EditInvProductosLabel_nombreProducto}" for="nombreProducto" />
+                        <p:inputText id="nombreProducto" value="#{invProductosController.selected.nombreProducto}" title="#{myBundle.EditInvProductosTitle_nombreProducto}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditInvProductosLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{invProductosController.selected.descripcion}" title="#{myBundle.EditInvProductosTitle_descripcion}" size="75" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditInvProductosLabel_idSubFamilia}" for="idSubFamilia" />
+                        <p:selectOneMenu id="idSubFamilia" value="#{invProductosController.selected.idSubFamilia}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invSubfamiliasController.items}"
+                                           var="idSubFamiliaItem"
+                                           itemValue="#{idSubFamiliaItem}"
+                                           itemLabel="#{idSubFamiliaItem.nombreSubFamilia}"
+                                           />
+                            <f:converter binding="#{invSubfamiliasConverter}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditInvProductosLabel_idUnidad}" for="idUnidad" />
+                        <p:selectOneMenu id="idUnidad" value="#{invProductosController.selected.idUnidad}" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{invUnidadmedidaController.items}"
+                                           var="idUnidadItem"
+                                           itemValue="#{idUnidadItem}"
+                                           itemLabel="#{idUnidadItem.nombreUnidad}"
+                                           />
+                            <f:converter binding="#{invUnidadmedidaConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{invProductosController.save}" value="#{myBundle.Save}" update="display,:InvProductosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InvProductosEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="InvProductosEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
