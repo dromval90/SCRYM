@@ -189,4 +189,8 @@ public class OrdentrabajoController extends AbstractController<Ordentrabajo> imp
     public void settotal(double ttotal) {
         this.ttotal= ttotal;
     }
+    
+   public void delete(){
+       sB_Ot.borrarRequisicion(this.getSelected(), this.getLDetordentrabajo());
+   }
 }

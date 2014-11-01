@@ -50,5 +50,22 @@ public class SB_Ot {
            JsfUtil.addErrorMessage(msg);
        }   
    }
+   
+   public void borrarRequisicion(Ordentrabajo EncOrden, List<Detordentrabajo> DetalleReq){
+       String msg="";
+       try{
+           
+           for(Detordentrabajo DetReq : DetalleReq){
+                detordentrabajoFacade.remove(DetReq);
+            }
+           msg+=" **Detalle Requisicion Eliminado Correctamente";
+           ordentrabajoFacade.remove(EncOrden);
+           msg="**Encabezado Requisicion Eliminado Correctamente";
+           JsfUtil.addSuccessMessage(msg);
+       }catch(Exception ex){
+           msg="Ocurrior Un Error, No pudo completarse el Ingreso de la Orden de Trabajo:";
+           JsfUtil.addErrorMessage(msg);
+       }   
+   }
 
 }

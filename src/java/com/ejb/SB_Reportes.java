@@ -26,7 +26,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 public class SB_Reportes {
     
     public String GenerarReporte(String rep, HashMap params) throws NamingException, SQLException, JRException, IOException {
-       
+       try{
             String reporPath = "";          
             reporPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(rep);              
             Context ctx= new InitialContext();
@@ -39,6 +39,10 @@ public class SB_Reportes {
             JasperExportManager.exportReportToPdfStream(jasperprint, servletOutputStream);
             FacesContext.getCurrentInstance().responseComplete();  
        
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+           
     
       return "";
     } 

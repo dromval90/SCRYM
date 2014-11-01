@@ -174,6 +174,5 @@ public class Ordentrabajo implements Serializable {
     @Override
     public String toString() {
         return "com.entities.Ordentrabajo[ idOrden=" + idOrden + " ]";
-    }
-    
+    }    
 }

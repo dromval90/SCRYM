@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="360" pageHeight="612" columnWidth="304" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="72" uuid="7746d878-2e41-421f-b968-525b7bbc7466">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="360" pageHeight="612" columnWidth="332" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="7746d878-2e41-421f-b968-525b7bbc7466">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="189"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="pidorden" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -88,7 +88,7 @@ where ot.idorden = $P{pidorden}]]>
 	<title>
 		<band height="64" splitType="Stretch">
 			<image>
-				<reportElement x="192" y="0" width="117" height="59" uuid="54b5b279-e57d-4905-909e-892d5947939b"/>
+				<reportElement x="192" y="1" width="117" height="59" uuid="54b5b279-e57d-4905-909e-892d5947939b"/>
 				<imageExpression><![CDATA["logo-original.jpg"]]></imageExpression>
 			</image>
 			<staticText>
@@ -211,35 +211,35 @@ where ot.idorden = $P{pidorden}]]>
 				<text><![CDATA[Descrip.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="158" y="118" width="26" height="20" uuid="2737c50f-0cd2-4af0-9cc8-60c01005fc9f"/>
+				<reportElement x="186" y="118" width="26" height="20" uuid="2737c50f-0cd2-4af0-9cc8-60c01005fc9f"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cant.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="184" y="118" width="33" height="20" uuid="d4e5f7e0-c44c-4203-ab21-a6b93f26f4ad"/>
+				<reportElement x="212" y="118" width="33" height="20" uuid="d4e5f7e0-c44c-4203-ab21-a6b93f26f4ad"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="220" y="118" width="26" height="20" uuid="67526eec-eb6e-40fc-ab80-b8af8978509b"/>
+				<reportElement x="248" y="118" width="26" height="20" uuid="67526eec-eb6e-40fc-ab80-b8af8978509b"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Desc.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="248" y="118" width="53" height="20" uuid="0f837e60-9b35-4f28-b9ff-713fcd941aea"/>
+				<reportElement x="276" y="118" width="53" height="20" uuid="0f837e60-9b35-4f28-b9ff-713fcd941aea"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SubTotal]]></text>
 			</staticText>
 			<line>
-				<reportElement x="2" y="138" width="311" height="1" uuid="70dc0da8-14bd-4fdc-a965-28cc86a63510"/>
+				<reportElement x="2" y="138" width="326" height="1" uuid="70dc0da8-14bd-4fdc-a965-28cc86a63510"/>
 			</line>
 		</band>
 	</columnHeader>
@@ -253,42 +253,42 @@ where ot.idorden = $P{pidorden}]]>
 				<textFieldExpression><![CDATA[$F{idProducto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="98" y="2" width="60" height="62" uuid="777898e6-316f-46bb-84f1-1668dcdde96d"/>
+				<reportElement x="98" y="2" width="88" height="62" uuid="777898e6-316f-46bb-84f1-1668dcdde96d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="158" y="2" width="26" height="16" uuid="59c34657-0ed4-41b2-ac61-7f27f696ea49"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="186" y="2" width="26" height="16" uuid="59c34657-0ed4-41b2-ac61-7f27f696ea49"/>
 				<textElement textAlignment="Center">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="184" y="2" width="33" height="16" uuid="66151ada-f019-4faf-988b-e683c732e029"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="212" y="2" width="33" height="16" uuid="66151ada-f019-4faf-988b-e683c732e029"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="220" y="2" width="26" height="16" uuid="b092f883-2dbd-4411-8363-7f7c82088313"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="248" y="2" width="26" height="16" uuid="b092f883-2dbd-4411-8363-7f7c82088313"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descuento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="34" y="2" width="64" height="30" uuid="63a72451-5db4-4c94-89d8-09c77b4026b4"/>
+				<reportElement x="34" y="2" width="64" height="51" uuid="63a72451-5db4-4c94-89d8-09c77b4026b4"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="247" y="3" width="53" height="16" uuid="10ee9fdb-2994-46b7-bd3f-08354e1bf7e6"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="275" y="3" width="53" height="16" uuid="10ee9fdb-2994-46b7-bd3f-08354e1bf7e6"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
@@ -299,21 +299,21 @@ where ot.idorden = $P{pidorden}]]>
 	<summary>
 		<band height="25" splitType="Stretch">
 			<textField pattern="###0.00">
-				<reportElement x="158" y="3" width="26" height="20" uuid="877e2220-212c-4e7f-9843-c0e3380ae8ea"/>
+				<reportElement x="186" y="3" width="26" height="20" uuid="877e2220-212c-4e7f-9843-c0e3380ae8ea"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{cantidad_1}]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="224" y="3" width="22" height="20" uuid="5957d0b4-2ab3-44be-a71e-fee043eda4f5"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="252" y="3" width="22" height="20" uuid="5957d0b4-2ab3-44be-a71e-fee043eda4f5"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{descuento_1}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="16" y="2" width="297" height="1" uuid="8fd3a256-c85a-4c05-96ae-a90ccbb2544b"/>
+				<reportElement x="16" y="2" width="312" height="1" uuid="8fd3a256-c85a-4c05-96ae-a90ccbb2544b"/>
 			</line>
 			<staticText>
 				<reportElement x="16" y="3" width="49" height="20" uuid="8451f787-ca7d-4ec3-857a-b829bb109b6f"/>
@@ -322,8 +322,8 @@ where ot.idorden = $P{pidorden}]]>
 				</textElement>
 				<text><![CDATA[TOTAL:]]></text>
 			</staticText>
-			<textField pattern="###0.00">
-				<reportElement x="251" y="3" width="49" height="20" uuid="06cd3552-23f8-4a3d-b049-88e4a95bff3d"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="279" y="3" width="49" height="20" uuid="06cd3552-23f8-4a3d-b049-88e4a95bff3d"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
