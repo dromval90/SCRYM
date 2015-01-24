@@ -67,5 +67,6 @@ public class SB_Ot {
            JsfUtil.addErrorMessage(msg);
        }   
    }
+   /*Ultima Revision de code en mini*/
 
 }

@@ -20,6 +20,7 @@
                          <f:facet name="header">
                             <div>
                                 <p:commandButton id="createButton" icon="ui-icon-document"   value="Nueva Orden" actionListener="#{ordentrabajoController.prepareCreate}" update="@form" process="@this" disabled="#{!empty ordentrabajoController.selected}"/>
+                                <p:commandButton id="viewprint"   icon="ui-icon ui-icon-print" actionListener="#{ordentrabajoController.imprimirRequisicion}" ajax="false" value="Imprimir" disabled="#{empty ordentrabajoController.selected.idOrden}"/>
                            
                             </div>
                         </f:facet>  
